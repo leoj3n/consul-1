@@ -111,6 +111,7 @@ func testServerConfig(t *testing.T) (string, *Config) {
 		},
 	}
 	config.AutoEncryptTLS = true
+	config.AutoEncryptGossip = true
 
 	return dir, config
 }
