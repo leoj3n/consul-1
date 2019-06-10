@@ -33,8 +33,13 @@
       </dl>
 {{#if proxy.ServiceName}}
       <dl>
-        <dt data-test-proxy-type="{{if proxy.ServiceProxy.DestinationServiceID "sidecar-proxy" "proxy"}}">{{if proxy.ServiceProxy.DestinationServiceID "Sidecar " ""}}Proxy</dt>
-        <dd><a href="{{href-to 'dc.services.instance' proxy.ServiceName proxy.ServiceID}}">{{proxy.ServiceID}}</a></dd>
+{{#if proxy.ServiceProxy.DestinationServiceID}}
+        <dt data-test-proxy-type="sidecar-proxy">Sidecar Proxy</dt>
+        <dd><a href="{{href-to 'dc.services.instance' proxy.ServiceName proxy.Node proxy.ServiceID}}">{{proxy.ServiceID}}</a></dd>
+{{else}}
+        <dt data-test-proxy-type="proxy">Proxy</dt>
+        <dd><a href="{{href-to 'dc.services.show' proxy.ServiceName}}">{{proxy.ServiceName}}</a></dd>
+{{/if}}
       </dl>
 {{/if}}
 {{#if (eq item.Kind 'connect-proxy')}}
